@@ -49,6 +49,15 @@ pub fn main() {
     }
 }
 ```
+
+## Features
+
+_smart-hash_ has a few features, but probably does what you want by default. (Meaning you don't need to do anything)
+
+- default - includes all macros in scope, including derive.
+- derive - same as the default.
+- manual - does not include the derive macro, assumes you will implement everything yourself.
+
 ## Whats Included?
 
 ### smart-hash
@@ -148,9 +157,13 @@ macro get_matching!(object, key == value, k2 == v2, ...) -> Option<Vec<object_me
 macro get_matching!(object where key is value, k2 is v2, ...) -> Option<Vec<object_member>>;
 ```
 
+#### derive Macro
+
+The derive macro from _smart-hash-derive_ is exposed in the _smart-hash_ create so you don't have to do anything additional.
+
 ### smart-hash-derive
 
-Crate including the procedural macro. There is nothing to do here except `#[macro_use]` the extern and then use the macro.
+Crate including the procedural macro. There is nothing to do here except `#[macro_use]` the extern and then use the macro. You do not need to use this if you are using Rust 2018 because it is already included in the base _smart-hash_ crate. All previous version will need to use it to get the derive macro.
 
 **NOTE:** the other derives, _Hash_, _Eq_, _PartialEq_ are requirements for HashSet and required as well.
 
@@ -172,6 +185,10 @@ The _smart-hash_ crate has everything you need, but makes it complicated. You'll
 ### smart-hash-derive
 
 The _smart-hash-derive_ crate is a procedural macro that will derive _SmartHash_ and its children traits automatically so you don't have to worry about a thing.
+
+### smart-hash-test
+
+A standalone binary app to test the macro scoping and make sure everything is accessable as planned.
 
 ## Future
 
