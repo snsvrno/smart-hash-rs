@@ -71,7 +71,7 @@ pub Struct Car {
 
 In order to implement ***SmartHash*** you would need to add the following. 
 
-**NOTE:** all this is automatically done for you if you use `#[derive(SmartHash)]` from [smart-hash-derive]().
+**NOTE:** all this is automatically done for you if you use `#[derive(SmartHash)]` from [smart-hash-derive](#smart-hash-derive).
 
 ```rust
 // the options struct
@@ -110,7 +110,7 @@ impl SmartHash for Car {
 
 The new option struct needs some empty traits implemented aswell..
 
-**NOTE:** all this is automatically done for you if you use `#[derive(SmartHash)]` from [smart-hash-derive]().
+**NOTE:** all this is automatically done for you if you use `#[derive(SmartHash)]` from [smart-hash-derive](#smart-hash-derive).
 
 ```rust
 
@@ -167,7 +167,7 @@ pub struct Person {
 
 ### smart-hash
 
-The _smart-hash_ crate has everything you need, but makes it complicated. You'll have to implement a lot. You can look at the [test](smart-hash/tests.basic) to see what needs to be written. Most of it is boiler plate and copy and paste. I'd recommend using the `derive` macro.
+The _smart-hash_ crate has everything you need, but makes it complicated. You'll have to implement a lot. You can look at the [test](smart-hash/tests/basic.rs) to see what needs to be written. Most of it is boiler plate and copy and paste. I'd recommend using the `derive` macro.
 
 ### smart-hash-derive
 
