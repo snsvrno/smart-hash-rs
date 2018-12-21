@@ -1,0 +1,14 @@
+[package]
+name = "smart-hash-derive"
+version = "0.1.0"
+authors = ["snsvrno <snsvrno@tuta.io>"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+smart-hash = { path = "../smart-hash"}
+syn = { version = "0.15", features = ["full","extra-traits"] }
+quote = "0.6"
+proc-macro2 = "0.4"

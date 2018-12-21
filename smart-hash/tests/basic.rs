@@ -4,12 +4,14 @@ use smart_hash::traits::{SmartHash,SmartHashOpt, SmartHashSet};
 use std::collections::HashSet;
 
 #[derive(Hash, Eq, PartialEq, Debug)]
+// make a derive here.
 pub struct Tester {
     value1 : u8,
     value2 : bool,
     value3 : String,
 }
 
+// part of the derive macro
 #[derive(Hash, Debug)]
 pub struct TesterOpt {
     value1 : Option<u8>,
@@ -17,6 +19,7 @@ pub struct TesterOpt {
     value3 : Option<String>,
 }
 
+// part of the derive macro
 impl PartialEq for TesterOpt {
     fn eq(&self, other: &TesterOpt) -> bool {
         (self.value1 == other.value1 || self.value1.is_none() || other.value1.is_none()) &&
@@ -24,8 +27,10 @@ impl PartialEq for TesterOpt {
         (self.value3 == other.value3 || self.value3.is_none() || other.value3.is_none())
     }
 }
+// part of the derive macro
 impl Eq for TesterOpt {}
 
+// part of the derive macro
 impl SmartHash for Tester {
     type option = TesterOpt; 
     
@@ -38,6 +43,7 @@ impl SmartHash for Tester {
     }
 }
 
+// part of the derive macro
 impl SmartHashOpt for TesterOpt { }
 
 #[test]
@@ -62,8 +68,21 @@ fn test_usage() {
         value3 : None,
     });
 
-    println!("Found: {:?}",matches);
-    assert!(false);
+    assert_eq!(matches.unwrap().len(),2);
 
+    let matches = testers.get_matching(TesterOpt {
+        value1 : None,
+        value2 : Some(false),
+        value3 : None,
+    });
 
+    assert_eq!(matches.unwrap().len(),1);
+
+    let matches = testers.get_matching(TesterOpt {
+        value1 : Some(23),
+        value2 : Some(false),
+        value3 : None,
+    });
+
+    assert!(matches.is_none());
 }
