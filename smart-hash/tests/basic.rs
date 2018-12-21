@@ -1,4 +1,5 @@
-#[macro_use] extern crate smart_hash;
+extern crate smart_hash;
+use smart_hash::get_matching;
 use smart_hash::traits::{SmartHash,SmartHashOpt, SmartHashSet};
 
 use std::collections::HashSet;
@@ -81,7 +82,7 @@ fn test_macro() {
     assert_eq!(result.unwrap().len(),2);
 
     // style 3
-    let result = get_matching!(testers where value1 is 10 and value2 is true);
+    let result = get_matching!(testers where value1 is 10, value2 is true);
     assert_eq!(result.unwrap().len(),1);
 }
 

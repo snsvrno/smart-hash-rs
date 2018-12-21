@@ -2,5 +2,6 @@
 
 members = [
     "smart-hash",
-    "smart-hash-derive"
+    "smart-hash-derive",
+    "smart-hash-test"
 ]

@@ -1,0 +1,11 @@
+[package]
+name = "smart-hash-test"
+version = "0.1.0"
+authors = ["snsvrno <snsvrno@tuta.io>"]
+edition = "2018"
+
+description = "an external test, outside of either crate"
+repository = "https://github.com/snsvrno/smart-hash-rs"
+
+[dependencies]
+smart-hash = { version = "0.1.0", path = "../smart-hash", features = ["derive"] }

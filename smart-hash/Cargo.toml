@@ -10,3 +10,9 @@ repository = "https://github.com/snsvrno/smart-hash-rs"
 readme = "../README.md"
 keywords = ["hashset","query","search","database"]
 categories = ["data-structures"]
+
+[dependencies]
+smart-hash-derive = { version = "0.1.0", path = "../smart-hash-derive", optional = true }
+
+[features]
+derive = [ "smart-hash-derive" ]

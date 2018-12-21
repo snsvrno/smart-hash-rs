@@ -1,5 +1,10 @@
 pub mod traits;
 
+#[cfg(feature = "derive")]
+extern crate smart_hash_derive; 
+#[cfg(feature = "derive")]
+pub use smart_hash_derive::SmartHash as SmartHash;
+
 #[macro_export]
 macro_rules! get_matching {
 
@@ -21,7 +26,7 @@ macro_rules! get_matching {
 
     // a more of a query format
     // get_matching!(object where key is var, key2 is var2);
-    ($obj:ident where $($key:ident is $val:expr) +) => ({
+    ($obj:ident where $($key:ident is $val:expr),+) => ({
         get_matching!($obj,$($key,$val),+)
     });
 }
