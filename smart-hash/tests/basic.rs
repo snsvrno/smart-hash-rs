@@ -72,8 +72,17 @@ fn test_macro() {
         value3 : "Some String".to_string(),
     });
 
+    // style 1
     let result = get_matching!(testers,value1,10);
     assert_eq!(result.unwrap().len(),2);
+
+    // style 2
+    let result = get_matching!(testers,value1 == 10);
+    assert_eq!(result.unwrap().len(),2);
+
+    // style 3
+    let result = get_matching!(testers where value1 is 10 and value2 is true);
+    assert_eq!(result.unwrap().len(),1);
 }
 
 #[test]
