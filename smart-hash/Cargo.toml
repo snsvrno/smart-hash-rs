@@ -15,4 +15,6 @@ categories = ["data-structures"]
 smart-hash-derive = { version = "0.1.0", path = "../smart-hash-derive", optional = true }
 
 [features]
+default = [ "smart-hash-derive" ]
 derive = [ "smart-hash-derive" ]
+manual = [ ]

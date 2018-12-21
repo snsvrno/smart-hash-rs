@@ -11,14 +11,14 @@ _smart-hash_ adds a trait which makes it easy to search for partial matches insi
 
 ## Minimum Example
 
-A quick 'get it working' example to show what it does, and how to set it up.
+A quick 'get it working' example to show what it does, and how to set it up. (Using new rust 2018)
 
 ```rust
-#[macro_use] extern crate smart-hash;
-#[macro_use] extern crate smart-hash-derive;
+extern crate smart_hash;
+use smart_hash::{get_matching,SmartHash}; // macros
 use smart_hash::traits::SmartHashSet;
 
-#[derive(SmartHash)]
+#[derive(SmartHash, Hash, Eq, PartialEq)]
 pub struct Person {
     name : String,
     age : u8,
