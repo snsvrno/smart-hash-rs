@@ -1,6 +1,4 @@
 #![recursion_limit="128"]
-// for the traits
-extern crate smart_hash;
 
 // for the macro
 #[macro_use] extern crate quote;
