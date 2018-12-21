@@ -5,7 +5,7 @@ extern crate smart_hash;
 // for the macro
 #[macro_use] extern crate quote;
 extern crate proc_macro;
-extern crate proc_macro2; use proc_macro2::{Ident, Span};
+extern crate proc_macro2; use proc_macro2::Ident;
 extern crate syn; use syn::Type;
 
 #[proc_macro_derive(SmartHash)]
@@ -17,6 +17,7 @@ pub fn smart_hash(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 }
 
 fn impl_smart_hash(ast : &syn::DeriveInput) -> proc_macro::TokenStream {
+    //* creates the 
 
     let name = &ast.ident;
     let name_opt = Ident::new(&format!("{}Opt",name),Span::call_site());
@@ -45,19 +46,6 @@ fn impl_smart_hash(ast : &syn::DeriveInput) -> proc_macro::TokenStream {
     // not needed, but for consistency.
     let ref t = t_prime;
 
-    /*
-    let ref m = vec![
-        Ident::new("value1",Span::call_site()),
-        Ident::new("value2",Span::call_site()),
-        Ident::new("value3",Span::call_site()) 
-    ];
-
-    let t = &vec![ 
-        Ident::new("u8",Span::call_site()),
-        Ident::new("bool",Span::call_site()),
-        Ident::new("String",Span::call_site())
-    ];
-    */
     let gen = quote! {
         use smart_hash::traits::SmartHashSet;
 
