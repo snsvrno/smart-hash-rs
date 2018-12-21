@@ -3,3 +3,10 @@ name = "smart-hash"
 version = "0.1.0"
 authors = ["snsvrno <snsvrno@tuta.io>"]
 edition = "2018"
+
+license = "MIT"
+description = "partial queries in HashSets, the traits."
+repository = "https://github.com/snsvrno/smart-hash-rs"
+readme = "../README.md"
+keywords = ["hashset","query","search","database"]
+categories = ["data-structures"]
