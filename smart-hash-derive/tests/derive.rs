@@ -1,5 +1,6 @@
-extern crate smart_hash;
+#[macro_use] extern crate smart_hash;
 #[macro_use] extern crate smart_hash_derive;
+use smart_hash::traits::SmartHashSet;
 
 use std::collections::HashSet;
 
@@ -8,6 +9,47 @@ pub struct Tester {
     value1: u8,
     value2: bool,
     value3: String,
+}
+
+#[derive(Hash, Eq, PartialEq, Debug, SmartHash)]
+pub struct Person {
+    name : String,
+    age : u8,
+    country : String,
+}
+
+#[test]
+fn test_macro() {
+    let mut people : HashSet<Person> = HashSet::new();
+
+    people.insert(Person{
+        name : "Jim Jones".to_string(),
+        age : 45,
+        country : "USA".to_string(),
+    });
+    people.insert(Person{
+        name : "Linda Hammersmith".to_string(),
+        age : 78,
+        country : "USA".to_string(),
+    });
+    people.insert(Person{
+        name : "Pecante Jones".to_string(),
+        age : 23,
+        country : "USA".to_string(),
+    });
+    people.insert(Person{
+        name : "George Linda".to_string(),
+        age : 23,
+        country : "Canada".to_string(),
+    });
+    
+    let people_set_one = get_matching!(people,age == 23);
+    assert!(people_set_one.unwrap().len() == 2);
+
+    
+    let people_set_two = get_matching!(people,country,"USA".to_string());
+    assert!(people_set_two.unwrap().len() == 3);
+    
 }
 
 #[test]

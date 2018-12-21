@@ -47,8 +47,6 @@ fn impl_smart_hash(ast : &syn::DeriveInput) -> proc_macro::TokenStream {
     let ref t = t_prime;
 
     let gen = quote! {
-        use smart_hash::traits::SmartHashSet;
-
         #[derive(Hash, Debug)]
         pub struct #name_opt {
             #(#m : Option<#t>),*

@@ -8,18 +8,24 @@ pub trait SmartHash {
 
 pub trait SmartHashOpt where Self : Default { }
 
-pub trait SmartHashSet where <Self as SmartHashSet>::output: SmartHash,
+pub trait SmartHashSet where <Self as SmartHashSet>::output : SmartHash, <Self as SmartHashSet>::option : Default
 {
     type output;
+    type option;
 
     fn get_matching<'a>(&'a self, options : <<Self as SmartHashSet>::output as SmartHash>::option) -> Option<Vec<&'a Self::output>>;
+
+    fn get_none_default(&self) -> Self::option {
+        Self::option::default()
+    }
 }
 
 impl<SH> SmartHashSet for HashSet<SH>
     where SH : SmartHash + std::hash::Hash + std::cmp::Eq,
-            <SH as SmartHash>::option : std::cmp::PartialEq
+            <SH as SmartHash>::option : std::cmp::PartialEq + Default,
 { 
     type output = SH;
+    type option = SH::option;
 
     fn get_matching<'a>(&'a self, options : <SH as SmartHash>::option) -> Option<Vec<&'a SH>> {
         let mut matches : Vec<&SH> = Vec::new();

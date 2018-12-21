@@ -6,6 +6,7 @@ Smart Hash is a collection of traits that allows you to use a `HashSet` with a `
 ```rust
 extern crate smart-hash;
 #[macro_use] extern crate smart-hash-derive;
+use smart_hash::traits::SmartHashSet;
 
 #[derive(SmartHash)]
 pub struct Person {
@@ -36,15 +37,5 @@ pub fn main() {
 
 ## Future
 
-- Make it easier to do a search than by using {StructName}Opt, perhaps use a macro
-
-```rust
-let people_25 = people.get_matching(SmartHash!(age,25));
-```
-
-or maybe even something like 
-
-```rust
-let people_25 = get_matching!(people,age == 25, height > 140);
-```
+- Allow for expressions when pattern matching, currently we can do this `get_matching!(hashmap,param1 = value1);` but it would be nicer to be able to do this `get_matching!(hashmap,param1 <= value1, param2 == value2);'
 
