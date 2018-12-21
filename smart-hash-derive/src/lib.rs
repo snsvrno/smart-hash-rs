@@ -5,7 +5,7 @@ extern crate smart_hash;
 // for the macro
 #[macro_use] extern crate quote;
 extern crate proc_macro;
-extern crate proc_macro2; use proc_macro2::Ident;
+extern crate proc_macro2; use proc_macro2::{Ident,Span};
 extern crate syn; use syn::Type;
 
 #[proc_macro_derive(SmartHash)]
@@ -59,6 +59,14 @@ fn impl_smart_hash(ast : &syn::DeriveInput) -> proc_macro::TokenStream {
         impl PartialEq for #name_opt {
             fn eq(&self, other : &#name_opt) -> bool {
                 #( ((self.#m == other.#m2) || other.#m3.is_none() || self.#m4.is_none()) ) && *
+            }
+        }
+
+        impl Default for #name_opt {
+            fn default() -> #name_opt {
+                #name_opt {
+                    #( #m : None ),*
+                }
             }
         }
 

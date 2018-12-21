@@ -6,7 +6,7 @@ pub trait SmartHash {
     fn into_option(&self) -> Self::option;
 }
 
-pub trait SmartHashOpt { }
+pub trait SmartHashOpt where Self : Default { }
 
 pub trait SmartHashSet where <Self as SmartHashSet>::output: SmartHash,
 {

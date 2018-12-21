@@ -1,4 +1,4 @@
-extern crate smart_hash;
+#[macro_use] extern crate smart_hash;
 use smart_hash::traits::{SmartHash,SmartHashOpt, SmartHashSet};
 
 use std::collections::HashSet;
@@ -17,6 +17,16 @@ pub struct TesterOpt {
     value1 : Option<u8>,
     value2 : Option<bool>,
     value3 : Option<String>,
+}
+// part of derive macro
+impl Default for TesterOpt {
+    fn default() -> TesterOpt {
+        TesterOpt {
+            value1 : None,
+            value2 : None,
+            value3 : None,
+        }
+    }
 }
 
 // part of the derive macro
@@ -45,6 +55,26 @@ impl SmartHash for Tester {
 
 // part of the derive macro
 impl SmartHashOpt for TesterOpt { }
+
+#[test]
+fn test_macro() {
+    let mut testers : HashSet<Tester> = HashSet::new();
+
+    testers.insert(Tester {
+        value1 : 10,
+        value2 : false,
+        value3 : "Some String".to_string(),
+    });
+
+    testers.insert(Tester {
+        value1 : 10,
+        value2 : true,
+        value3 : "Some String".to_string(),
+    });
+
+    let result = get_matching!(testers,value1,10);
+    assert_eq!(result.unwrap().len(),2);
+}
 
 #[test]
 fn test_usage() {
