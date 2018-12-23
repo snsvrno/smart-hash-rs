@@ -47,7 +47,7 @@ fn impl_smart_hash(ast : &syn::DeriveInput) -> proc_macro::TokenStream {
     let gen = quote! {
         #[derive(Hash, Debug)]
         pub struct #name_opt {
-            #(#m : Option<#t>),*
+            #(pub #m : Option<#t>),*
         }
 
         impl Eq for #name_opt { }
